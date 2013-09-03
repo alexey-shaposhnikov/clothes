@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block  media %}
+    <link rel="stylesheet" href="/static/css/clothes.css">
+{% endblock %}
+{% block content %}
+    <div class="clothes-item big">
+        <img src="{{ uri_for('serve_image', key=clothes.photo) }}" class="img-thumbnail">
+        <div class="clothes-name">{{ clothes.name }}</div>
+        <form action="{{ uri_for('clothes_remove') }}" method="POST">
+            <input type="hidden" name="key" value="{{ clothes.key.urlsafe() }}">
+            <input type="submit" value="Remove">
+        </form>
+    </div>
+{% endblock %}

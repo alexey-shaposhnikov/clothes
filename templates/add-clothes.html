@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form class="bs-example" role="form" method="POST"  enctype="multipart/form-data" action="{{ upload_url }}">
+        <div class="form-group">
+            <label for="clothesName">Name</label>
+            <input type="text" class="form-control" id="clothesName" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="clothesPhoto">File input</label>
+            <input type="file" id="clothesPhoto" name="photo" accept="images/*">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

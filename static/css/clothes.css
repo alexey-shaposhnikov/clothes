@@ -1,0 +1,16 @@
+.clothes-item {
+    display: inline-block;
+}
+.clothes-item.small {
+    width: 150px;
+}
+.clothes-item.big {
+    width: 500px;
+}
+.clothes-item img {
+    width: 100%;
+}
+.clothes-name {
+    text-align: center;
+    display: block;
+}

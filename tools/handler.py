@@ -5,7 +5,8 @@ try:
 except ImportError:
     import json
 import os
-import jinja2
+import webapp2
+from webapp2_extras import jinja2
 import datetime
 import base64
 import Cookie
@@ -18,17 +19,22 @@ from models.user import User
 class BaseHandler(webapp.RequestHandler):
     logout_url = None
     login_url = None
-    def render(self, name, data={}):
-        JINJA_ENVIRONMENT = jinja2.Environment(
-            loader=jinja2.FileSystemLoader(os.path.join(
-                os.path.dirname(__file__), '../templates')),
-            extensions=['jinja2.ext.autoescape'])
+    @webapp2.cached_property
+    def jinja2(self):
+        j = jinja2.get_jinja2(app=self.app)
+        j.environment.globals.update({
+            # Set global variables.
+            'uri_for': webapp2.uri_for,
+            'google_user': lambda: users.get_current_user()
+        })
+        return j
 
-        template = JINJA_ENVIRONMENT.get_template(name + '.html')
-        data['user'] = self.user
-        data['logout_url'] = self.logout_url
-        data['login_url'] = self.login_url
-        self.response.write(template.render(data))
+    def render_template_to_str(self, filename, **template_args):
+        return self.jinja2.render_template(filename, **template_args)
+
+    def render(self, filename, **template_args):
+        template_args['request'] = self
+        self.response.write(self.jinja2.render_template(filename + '.html', **template_args))
 
     def initialize(self, request, response):
         super(BaseHandler, self).initialize(request, response)
