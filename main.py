@@ -5,15 +5,13 @@
 # limitations under the License.
 
 import os
+import sys
 from views.home import HomeHandler
-from views.login import LoginHandler
-from views.clothes import ClothesHandler
 from tools.image import Image
-#from google.appengine.ext import webapp
 import webapp2
 
+sys.path.append(os.path.join(os.path.dirname(__file__), 'libs'))
 
-os.environ[u'DJANGO_SETTINGS_MODULE'] = u'conf'
 
 
 # routes = [
@@ -22,11 +20,10 @@ os.environ[u'DJANGO_SETTINGS_MODULE'] = u'conf'
 # ]
 app = webapp2.WSGIApplication([
     webapp2.Route('/', handler=HomeHandler, name='home'),
-    webapp2.Route('/clothes', handler=HomeHandler, name='clothes_list'),
-    webapp2.Route('/clothes/add', handler=ClothesHandler, name='add_clothes'),
-    webapp2.Route('/clothes/remove', handler='views.clothes.ClothesRemoveHandler', name='clothes_remove'),
-    webapp2.Route('/clothes/show/<key:.+>', handler='views.clothes.ClothesShowHandler', name='show_clothes'),
-    webapp2.Route('/login', handler=LoginHandler, name='login'),
+
+    webapp2.Route('/api/images', handler='views.api.ImagesAPIHandler', name='images_api'),
+    webapp2.Route('/api/images', handler='views.api.ImagesAPIHandler', name='images_user_api'),
+    webapp2.Route('/api/images/image', handler='views.api.ImagesPhotoAPIHandler'),
     webapp2.Route('/serve-image/<key:.+>', handler=Image, name='serve_image')
 ], True)
 #app = webapp.WSGIApplication(routes, debug=True)

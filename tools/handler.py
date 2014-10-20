@@ -36,6 +36,10 @@ class BaseHandler(webapp.RequestHandler):
         template_args['request'] = self
         self.response.write(self.jinja2.render_template(filename + '.html', **template_args))
 
+    def response_json(self, data):
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(data))
+
     def initialize(self, request, response):
         super(BaseHandler, self).initialize(request, response)
         user = users.get_current_user()

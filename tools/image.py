@@ -12,8 +12,9 @@ class Image(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler):
         resource = key
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
+        self.response.headers['Cache-Control'] = "max-age=31536000"
         if not blob_info:
             self.response.out.write(resource)
         else:
-            self.response.headers['Content-Type'] = 'image/png'
+            #self.response.headers['Content-Type'] = blob_info.content_type
             self.send_blob(blob_info)

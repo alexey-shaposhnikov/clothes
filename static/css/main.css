@@ -1,0 +1,24 @@
+#list {
+  margin: 10px 0;
+}
+#list .item {
+  display: inline-block;
+  min-height: 130px;
+  vertical-align: middle;
+  margin: 0 5px 5px 0;
+}
+#list .item img {
+  max-height: 130px;
+  max-width: 100%;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+#list .item .name {
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+}
+form {
+  text-align: center;
+}

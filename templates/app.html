@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/fancybox/jquery.fancybox.css"/>
+    <link rel="stylesheet" href="/static/fancybox/helpers/jquery.fancybox-thumbs.css"/>
+    <link rel="stylesheet" href="/static/css/main.css"/>
+    <title></title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="/">Image Saving</a>
+    </div>
+
+
+
+</nav>
+<div class="container">
+
+    <div class="row">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input type="text" accesskey="n" class="form-control" name="name" placeholder="name"/>
+            </div>
+            <div class="form-group">
+                <input type="text" accesskey="t" class="form-control" name="tags" placeholder="tags"/>
+            </div>
+            <div class="form-group">
+                <input type="file" accesskey="p" class="form-control" name="photo" accept="image/*"/>
+            </div>
+            <button class="btn create btn-default" accesskey="s">go</button>
+        </form>
+
+        <div id="list"></div>
+        <button class="btn btn-default btn-block load-more">load more</button>
+        <br/>
+    </div>
+
+</div>
+
+<script src="/static/js/jquery-1.10.2.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src="/static/fancybox/jquery.fancybox.js"></script>
+<script src="/static/fancybox/helpers/jquery.fancybox-thumbs.js"></script>
+<script src="/static/main.js"></script>
+
+</body>
+</html>
